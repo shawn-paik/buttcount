@@ -6,22 +6,39 @@ class App extends React.Component {
 			butts: []
 		}
 		this.addButts=this.addButts.bind(this)
+		this.minusButts=this.minusButts.bind(this)
 	}
 
 	componentDidMount(){
 		this.setState({
-			butts: this.props.current_user.butts.length
+			butts: this.props.current_user.butts
 		})
 	}
 
 	addButts(event){
-		event.preventDefault()
+		// event.preventDefault()
 		$.ajax({
 			method:'POST',
 			url: '/butts'
-
 		}).done(response=>{
-			debugger
+			this.setState({
+				butts: response.butts
+			})
+		})
+
+	}
+
+	minusButts(event){
+		// event.preventDefault()
+		
+		var lastButt=this.state.butts.slice(-1)[0].id
+		$.ajax({
+			method:'DELETE',
+			url:'/butts/'+lastButt
+		}).done(response=>{
+			this.setState({
+				butts: response.butts
+			})
 		})
 
 	}
@@ -29,12 +46,11 @@ class App extends React.Component {
 	render(){
 		return(
 			<div className="container">
-				{console.log(this.props.current_user)}
 				<p>Hey there!</p>
 				<p>You had this many butts:</p>
-				{this.state.reward? this.state.reward : 0}
+				{this.state.butts? this.state.butts.length : 0}
 				<br></br>
-				<input type="button" name="decrease" value="-" />
+				<input type="button" name="decrease" value="-" onClick={this.minusButts}/>
 				<input type="button" name="increase" value="+" onClick={this.addButts}/>
 			</div>
 			)
