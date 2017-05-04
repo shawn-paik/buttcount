@@ -1,3 +1,6 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
@@ -10,6 +13,28 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
- *= require_self
+ 
  */
+
+ body {
+ 	font-family: "Roboto";
+ 	a {
+ 		color:white;
+ 	&:hover {color: red;} ;
+ 	}
+ }
+
+ .sign-in {
+ 	background: black;
+ 	text-align: right;
+ 	padding: .3%;
+ 	padding-right: 1%;
+ }
+
+ .day {
+ 	margin: auto;
+ 	margin-top: 15%;
+ 	text-align: center;
+ 	border-style: solid;
+ 	padding: 3%;
+ }
