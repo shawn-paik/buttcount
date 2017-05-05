@@ -46,12 +46,19 @@ class App extends React.Component {
 	render(){
 		return(
 			<div className="container">
-				<p>Hey there!</p>
-				<p>You had this many butts:</p>
-				{this.state.butts? this.state.butts.length : 0}
-				<br></br>
-				<input type="button" name="decrease" value="-" onClick={this.minusButts}/>
-				<input type="button" name="increase" value="+" onClick={this.addButts}/>
+				<div className="row">
+					<div className="col-sm-4">
+					</div>
+					<div className="col-sm-4 day">
+						<p>Butts today:</p>
+						{this.state.butts? this.state.butts.length : 0}
+						<br></br>
+						<input type="button" name="decrease" value="-" onClick={this.minusButts}/>
+						<input type="button" name="increase" value="+" onClick={this.addButts}/>
+					</div>
+					<div className="col-sm-4">
+					</div>
+				</div>
 			</div>
 			)
 	}
