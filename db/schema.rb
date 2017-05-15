@@ -10,31 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170504212912) do
+ActiveRecord::Schema.define(version: 20170515051014) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "butts", force: :cascade do |t|
-    t.integer  "price"
+    t.boolean  "bummed"
+    t.boolean  "loosie"
+    t.float    "price"
+    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean  "loosie"
-    t.boolean  "bummed"
+    t.index ["user_id"], name: "index_butts_on_user_id", using: :btree
+  end
+
+  create_table "pack_butts", force: :cascade do |t|
     t.boolean  "last_cig"
-    t.boolean  "smoked"
-    t.integer  "pack_id"
-    t.index ["pack_id"], name: "index_butts_on_pack_id", using: :btree
+    t.integer  "pack_id",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["pack_id"], name: "index_pack_butts_on_pack_id", using: :btree
   end
 
   create_table "packs", force: :cascade do |t|
+    t.string   "brand"
     t.float    "price"
-    t.integer  "user_id",                 null: false
-    t.integer  "total",      default: 20
     t.boolean  "finished"
+    t.integer  "total",      default: 20
+    t.integer  "user_id",                 null: false
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
-    t.string   "brand"
     t.index ["user_id"], name: "index_packs_on_user_id", using: :btree
   end
 
