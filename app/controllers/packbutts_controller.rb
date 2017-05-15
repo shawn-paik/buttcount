@@ -1,0 +1,2 @@
+class PackbuttsController < ApplicationController
+end

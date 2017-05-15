@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170515051014) do
+ActiveRecord::Schema.define(version: 20170515053811) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,12 +25,12 @@ ActiveRecord::Schema.define(version: 20170515051014) do
     t.index ["user_id"], name: "index_butts_on_user_id", using: :btree
   end
 
-  create_table "pack_butts", force: :cascade do |t|
+  create_table "packbutts", force: :cascade do |t|
     t.boolean  "last_cig"
     t.integer  "pack_id",    null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["pack_id"], name: "index_pack_butts_on_pack_id", using: :btree
+    t.index ["pack_id"], name: "index_packbutts_on_pack_id", using: :btree
   end
 
   create_table "packs", force: :cascade do |t|
