@@ -4,18 +4,19 @@
     = stylesheet_link_tag 'application'
     = javascript_include_tag 'application'
     = csrf_meta_tags
-    .sign-in
-      - if user_signed_in?
-        = link_to "Sign out", destroy_user_session_path, method: :delete
-      - else
-        = link_to "Sign in", new_user_session_path
-        = link_to "Sign up", new_user_registration_path
+    
 
-  %body
-   
-    #main
-      - if flash[:notice]
-        #notice.message= flash[:notice]
-      - elsif flash[:warning]
-        #warning.message= flash[:warning]
-      = yield
+
+%body
+ 
+
+    
+
+  -# .fb-login-button{:data-max-rows =>"1", :data-size =>"large", :data-button-type =>continue_with, :data-show-faces =>"false", :data-auto-logout-link =>"false", :data-use-continue-as =>"false"}, 
+
+  #main
+    - if flash[:notice]
+      #notice.message= flash[:notice]
+    - elsif flash[:warning]
+      #warning.message= flash[:warning]
+    = yield

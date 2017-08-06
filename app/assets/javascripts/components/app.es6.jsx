@@ -1,8 +1,7 @@
 class App extends React.Component {
 	constructor(){
 		super()
-		this.state = {
-
+		this.state = {  
 			butts: []
 		}
 		this.addButts=this.addButts.bind(this)
