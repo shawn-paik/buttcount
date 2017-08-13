@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
-  devise_for :users
+ 
   resources :butts
   resources :users
+  resources :pages
+  get '/pages/signout' => 'pages#destroy'
+   devise_for :users, only: [:index, :show]
   # get '/pages/', :to => 'pages#home'
   
   root to: "pages#home"

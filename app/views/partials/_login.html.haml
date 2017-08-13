@@ -1,0 +1,11 @@
+- if user_signed_in? 
+	- if @user["fbid"]
+		<a id="logout">Log out of Facebook</a>
+	- else
+		= link_to "Sign out", destroy_user_session_path, method: :delete
+- else
+	<a id ="login">Log in with Facebook</a>
+	.or
+		OR
+	= link_to "Sign in", new_user_session_path
+	= link_to "Sign up", new_user_registration_path	
