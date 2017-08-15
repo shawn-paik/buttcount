@@ -1,5 +1,3 @@
-console.log('hi')
-
 
   window.fbAsyncInit = function() {
     FB.init({
@@ -50,6 +48,7 @@ console.log('hi')
             $('#logout').show()
             $('#login').hide()    
     }
+
   function addUser(user) {
     var facebookEmail = user.name + '@facebook.com'
     var email = facebookEmail.replace(/ /g,"_");
@@ -86,10 +85,19 @@ console.log('hi')
     }
 
 
+
 $(document).ready(function(){
   $('button').hide()
   $('#logout').on("click",logout)
   $('#login').on("click",login)
+  $(".register_form").hide()
+  $('#sign_up').on("click", function(event){
+    event.preventDefault()
+     $('#sign_up').hide()
+      $(".register_form").show()
+     
+  })
+
   
   $(document).on(
       'fbload',  //  <---- HERE'S OUR CUSTOM EVENT BEING LISTENED FOR
