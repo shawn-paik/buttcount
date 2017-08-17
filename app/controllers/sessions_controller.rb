@@ -6,18 +6,16 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @parent = Parent.find_by(username: params[:user][:username])
-    @child = Child.find_by(username: params[:user][:username])
-    if @parent && @parent.authenticate(params[:user][:password])
-      session[:parent_id] = @parent.id
-      redirect_to pages_path
-    elsif @child && @child.authenticate(params[:user][:password])
-      session[:child_id] = @child.id
-      
-      redirect_to pages_path
+  		binding.pry
+  	@user = User.find_by(email: params[:email])
+
+   
+    if @user && @user.authenticate(params[:password])
+      session[:user_id] = @user.id
+      redirect_to '/pages'
     else
       @errors = ['Invalid email/password']
-      render "/sessions/new"
+      render "/"
     end
   end
 

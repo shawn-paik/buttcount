@@ -10,10 +10,6 @@
     $(document).trigger('fbload')
   };
 
-  // var status = FB.getLoginStatus();
-  //   console.log(status);
-  // console.log(status)
-
   (function(d, s, id){
      var js, fjs = d.getElementsByTagName(s)[0];
      if (d.getElementById(id)) {return;}
@@ -22,15 +18,6 @@
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
   
- //  function checkLoginState() {
- //   FB.getLoginStatus(function(response) {
- //      statusChangeCallback(response);
- //   });
-  // }
-  function sendUserInfo(){
-
-  }
-
 
   function login() {
             FB.login(function(response) {
@@ -45,8 +32,8 @@
 
                   });
             });        
-            $('#logout').show()
-            $('#login').hide()    
+            $('#fbLogout').show()
+            $('#fbLogin').hide()    
     }
 
   function addUser(user) {
@@ -57,9 +44,7 @@
       fb: true,
       email: email,
       fbid: user.id
-      // status: loginStatus.status
     }
-    // debugger
     $.ajax({
       method: 'POST',
       url:'/users',
@@ -75,8 +60,8 @@
         FB.getLoginStatus(function(response) {
          if (response && response.status === 'connected') {
            FB.logout(function(response) {
-             $('#logout').hide()
-             $('#login').show()
+             $('#fbLogout').hide()
+             $('#fbLogin').show()
               console.log('you have been logged out')
             });
           }
@@ -84,18 +69,35 @@
         window.location ='pages/signout'
     }
 
-
-
 $(document).ready(function(){
   $('button').hide()
-  $('#logout').on("click",logout)
-  $('#login').on("click",login)
-  $(".register_form").hide()
-  $('#sign_up').on("click", function(event){
+  $('#fbLogout').on("click",logout)
+  $('#fbLogin').on("click",login)
+  $(".sign-up-form").hide()
+  $(".log-in-form").hide()
+
+  $('#sign-up').on("click", function(event){
     event.preventDefault()
-     $('#sign_up').hide()
-      $(".register_form").show()
-     
+     $('#sign-up').hide()
+    $(".sign-up-form").show()
+  })
+
+  $('#log-in').on("click", function(event){
+    event.preventDefault()
+    $('#log-in').hide()
+    $(".log-in-form").show()
+  })
+
+  $('#show-password').on("click", function(event){
+    if ($('.show-password').hasClass('show')){
+      console.log('true')
+      $('#password').attr('type','text')
+      $('.show-password').removeClass('show')
+    } else {
+      console.log('false')
+      $('#password').attr('type','password')
+      $('.show-password').addClass('show')
+    }
   })
 
   
@@ -107,7 +109,6 @@ $(document).ready(function(){
           FB.getLoginStatus(function(res){
               if( res.status == "connected" ){
                   $('#logout').show()
-                  // 
               } else { $('#logout').show()}
           });
       }
