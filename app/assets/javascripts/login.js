@@ -40,7 +40,7 @@
     var facebookEmail = user.name + '@facebook.com'
     var email = facebookEmail.replace(/ /g,"_");
     console.log(email)
-    let data = {
+    var data = {
       fb: true,
       email: email,
       fbid: user.id
