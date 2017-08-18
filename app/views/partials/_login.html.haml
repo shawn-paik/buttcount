@@ -16,7 +16,7 @@
 				= email_field_tag "email", nil, placeholder: "Email"
 				= password_field_tag "password", ""
 				= submit_tag "Submit"
-				.show-password.show
+				.show-password-sign-up.show.toggle
 					= check_box_tag "show-password"
 					show password
 	.login
@@ -26,6 +26,6 @@
 				= email_field_tag "email", nil, placeholder: "Email"
 				= password_field_tag "password", ""
 				= submit_tag "Submit"
-				.show-password.show
+				.show-password-sign-up.show.toggle
 					= check_box_tag "show-password"
 					show password

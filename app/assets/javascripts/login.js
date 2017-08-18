@@ -88,15 +88,17 @@ $(document).ready(function(){
     $(".log-in-form").show()
   })
 
-  $('#show-password').on("click", function(event){
-    if ($('.show-password').hasClass('show')){
+  $('.toggle').on("click", function(event){
+    if ($(this).hasClass('show')){
       console.log('true')
-      $('#password').attr('type','text')
-      $('.show-password').removeClass('show')
+      $(this).parent()[0][3].type = "text"
+      $(this).removeClass('show')
     } else {
       console.log('false')
-      $('#password').attr('type','password')
-      $('.show-password').addClass('show')
+      // $('#password').attr('type','password')
+      $(this).parent()[0][3].type = "password"
+      // $(this).parent()[0][3].attr('type','password')
+      $(this).addClass('show')
     }
   })
 
