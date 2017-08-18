@@ -37,7 +37,14 @@ class UsersController < ApplicationController
 			redirect_to '/pages'
 		else
 			@errors = user.errors.full_messages
+			if request.xhr?
 			render json: @errors.as_json
+			else
+				@errors.each do |error|
+					flash[:notice] = error
+				end
+				redirect_to '/'
+			end 
 		end
 	end
 end

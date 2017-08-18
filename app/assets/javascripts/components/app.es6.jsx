@@ -28,9 +28,10 @@ class App extends React.Component {
 	}
 
 	minusButts(event){
-		// event.preventDefault()
+		event.preventDefault()
 		
 		var lastButt=this.state.butts.slice(-1)[0].id
+		debugger
 		$.ajax({
 			method:'DELETE',
 			url:'/butts/'+lastButt

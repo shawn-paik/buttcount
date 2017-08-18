@@ -11,7 +11,7 @@
 	-# = link_to "Sign up", new_user_registration_path	
 	.register
 		= link_to "Sign up", nil,  id: "sign-up"
-		.sign-up-form
+		.sign-up-form.show-form
 			=form_tag '/users', method: :post do
 				= email_field_tag "email", nil, placeholder: "Email"
 				= password_field_tag "password", ""
@@ -21,7 +21,7 @@
 					show password
 	.login
 		=link_to "Log In", nil, id:"log-in"
-		.log-in-form
+		.log-in-form.show-form
 			=form_tag '/login', method: :post do
 				= email_field_tag "email", nil, placeholder: "Email"
 				= password_field_tag "password", ""

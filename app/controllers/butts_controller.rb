@@ -1,7 +1,7 @@
 class ButtsController < ApplicationController
 	
 	def create
-		@butt = Butt.new(user_id: current_user.id)
+		@butt = Butt.new(buttable_id: current_user.id, buttable_type: current_user.class.name)
 		
 		if @butt.save
 		send_butts_list 

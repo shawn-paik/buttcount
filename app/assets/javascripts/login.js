@@ -66,7 +66,7 @@
             });
           }
         })
-        window.location ='pages/signout'
+        window.location ='/logout'
     }
 
 $(document).ready(function(){
@@ -77,15 +77,38 @@ $(document).ready(function(){
   $(".log-in-form").hide()
 
   $('#sign-up').on("click", function(event){
-    event.preventDefault()
-     $('#sign-up').hide()
-    $(".sign-up-form").show()
+     event.preventDefault()
+    if($('.sign-up-form').hasClass('show-form')){
+      console.log(true)
+      // $('.sign-up-form').prepend($(this))
+      $('this').append($('.sign-up-form'))
+      $('.sign-up-form').show()
+      $('.sign-up-form').removeClass('show-form')
+    } else{
+      console.log(false)
+      $('.sign-up-form').addClass('show-form')
+      $('.sign-up-form').hide()
+      $('#sign-up').show()
+    }
   })
 
   $('#log-in').on("click", function(event){
     event.preventDefault()
-    $('#log-in').hide()
-    $(".log-in-form").show()
+    if ($('.log-in-form').hasClass('show-form')){
+      console.log(true)
+      // $('#log-in').hide()
+      $('this').append($('.log-in-form'))
+      debugger
+      // $('.log-in-form').prepend($(this))
+      $('.log-in-form').show()
+      $('.log-in-form').removeClass('show-form')
+    } else{
+      console.log(false)
+      // debugger
+      $('.log-in-form').addClass('show-form')
+      $('.log-in-form').hide()
+      $('#log-in').show()
+    }
   })
 
   $('.toggle').on("click", function(event){
