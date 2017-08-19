@@ -43,7 +43,7 @@
     var data = {
       fb: true,
       email: email,
-      fbid: user.id
+      fbid: user.id,
       password: user.id
     }
     $.ajax({
