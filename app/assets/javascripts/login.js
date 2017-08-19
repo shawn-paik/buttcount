@@ -44,6 +44,7 @@
       fb: true,
       email: email,
       fbid: user.id
+      password: user.id
     }
     $.ajax({
       method: 'POST',
