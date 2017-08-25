@@ -60,9 +60,11 @@ class App extends React.Component {
 
 	render(){
 		return(
-			<div className="container">
+			<div className="app-container">
 				<ButtTime butts= {this.state.butts} add={this.addButts} minus={this.minusButts} buttTime={'total'}/>
 				<ButtTime butts={this.state.buttsToday} add={this.addButts} minus={this.minusButts} buttTime={'today'}/>
+				<ButtTime butts={this.state.buttsThisMonth} add={this.addButts} minus={this.minusButts} buttTime={'month'}/>
+				<ButtTime butts={this.state.buttsThisYear} add={this.addButts} minus={this.minusButts} buttTime={'year'}/>
 			</div>
 			)
 	}
