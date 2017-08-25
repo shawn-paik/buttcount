@@ -16,4 +16,18 @@ class User < ApplicationRecord
             format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
             
   has_secure_password
+
+  def butts_this_month
+    # returns array of butt objects made in current month
+    self.butts.where("created_at >= ?", Time.zone.now.beginning_of_month)
+  end
+
+  def butts_this_year
+      self.butts.where("created_at >= ?", Time.zone.now.beginning_of_year)
+  end
+
+  def butts_today
+       self.butts.where("created_at >= ?", Time.zone.now.beginning_of_day)
+  end
+
 end
