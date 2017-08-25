@@ -20,16 +20,13 @@
 
  body {
  	font-family: "Roboto";
- 	background-color: gray;
+ 	background-color: #EDD27F;
  	a {
- 		color:white;
- 	&:hover {color: red;} ;
+ 		text-decoration: underline;
+ 		color:black;
+ 	&:hover {color: blue;} ;
  	}
- }
-
- .sign-in {
- 	text-align: right;
- 	padding: .3%;
- 	padding-right: 1%;
+ 	color: black;
+ 	font-size: 3em;
  }
 
