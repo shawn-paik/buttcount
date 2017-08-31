@@ -30,4 +30,8 @@ class User < ApplicationRecord
        self.butts.where("created_at >= ?", Time.zone.now.beginning_of_day)
   end
 
+  def butts_this_week
+    self.butts.where("created_at >= ?", Time.zone.now.beginning_of_week)
+  end
+
 end

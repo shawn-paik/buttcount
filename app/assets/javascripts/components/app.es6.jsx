@@ -4,9 +4,11 @@ class App extends React.Component {
 		super()
 		this.state = {  
 			   	butts: [],
-					buttsThisYear:[],
+			   	buttsToday:[],
+					buttsThisWeek: [],
 					buttsThisMonth: [],
-					buttsToday:[]
+					buttsThisYear:[]
+					
 		}
 		this.addButts=this.addButts.bind(this)
 		this.minusButts=this.minusButts.bind(this)
@@ -17,12 +19,15 @@ class App extends React.Component {
 			butts: this.props.current_user.butts,
 			buttsThisYear: this.props.current_user.butts_this_year,
 			buttsThisMonth: this.props.current_user.butts_this_month,
-			buttsToday: this.props.current_user.butts_today
+			buttsToday: this.props.current_user.butts_today,
+			buttsThisWeek: this.props.current_user.butts_this_week
+
 		})
 	}
 
 	addButts(event){
-		event.preventDefault()
+		this.state.buttcount += 1
+		// event.preventDefault()
 		$.ajax({
 			method:'POST',
 			url: '/butts'
@@ -32,7 +37,8 @@ class App extends React.Component {
 				butts: response.butts,
 				buttsThisYear: response.butts_this_year,
 				buttsThisMonth: response.butts_this_month,
-				buttsToday: response.butts_today
+				buttsToday: response.butts_today,
+				buttsThisWeek: response.butts_this_week
 			})
 			// debugger
 		})
@@ -40,7 +46,8 @@ class App extends React.Component {
 	}
 
 	minusButts(event){
-		event.preventDefault()
+		this.state.buttcount -= 1
+		// event.preventDefault()
 		var lastButt=this.state.butts.slice(-1)[0].id
 		$.ajax({
 			method:'DELETE',
@@ -51,7 +58,8 @@ class App extends React.Component {
 				butts: response.butts,
 				buttsThisYear: response.butts_this_year,
 				buttsThisMonth: response.butts_this_month,
-				buttsToday: response.butts_today
+				buttsToday: response.butts_today,
+				buttsThisWeek: response.butts_this_week
 			})
 			// debugger
 		})
@@ -61,10 +69,11 @@ class App extends React.Component {
 	render(){
 		return(
 			<div className="app-container">
-				<ButtTime butts= {this.state.butts} add={this.addButts} minus={this.minusButts} buttTime={'total'}/>
-				<ButtTime butts={this.state.buttsToday} add={this.addButts} minus={this.minusButts} buttTime={'today'}/>
-				<ButtTime butts={this.state.buttsThisMonth} add={this.addButts} minus={this.minusButts} buttTime={'month'}/>
-				<ButtTime butts={this.state.buttsThisYear} add={this.addButts} minus={this.minusButts} buttTime={'year'}/>
+				<ButtTime  add={this.addButts} minus={this.minusButts} butts = {this.state.butts} buttTime={'total'}/>
+				<ButtTime  add={this.addButts} butts = {this.state.buttsToday} minus={this.minusButts} buttTime={'today'}/>
+				<ButtTime  add={this.addButts} butts = {this.state.buttsThisWeek} minus={this.minusButts} buttTime={'week'}/>
+				<ButtTime  butts = {this.state.buttsThisMonth} add={this.addButts} minus={this.minusButts} buttTime={'month'}/>
+				<ButtTime  butts={this.state.buttsThisYear} add={this.addButts} minus={this.minusButts} buttTime={'year'}/>
 			</div>
 			)
 	}

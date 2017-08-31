@@ -4,14 +4,14 @@ class PagesController < ApplicationController
 		# binding.pry
 		# p 'you made it!'
 		if user_signed_in?
-			@current_user = current_user.as_json(include: {butts: {methods:[:price, :created_at, :updated_at]}}, methods: [:butts_this_year, :butts_this_month, :butts_today])
+			@current_user = current_user.as_json(include: {butts: {methods:[:price, :created_at, :updated_at]}}, methods: [:butts_this_year, :butts_this_month, :butts_today,:butts_this_week])
 			@user = current_user
 		end
 	end
 
 	def home
 		if user_signed_in?
-			@current_user = current_user.as_json(include: {butts: {methods:[:price, :created_at, :updated_at]}}, methods: [:butts_this_year, :butts_this_month, :butts_today])
+			@current_user = current_user.as_json(include: {butts: {methods:[:price, :created_at, :updated_at]}}, methods: [:butts_this_year, :butts_this_month, :butts_today,:butts_this_week])
 			redirect_to '/pages'
 		end
 	end

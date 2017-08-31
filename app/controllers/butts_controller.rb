@@ -25,7 +25,7 @@ class ButtsController < ApplicationController
 
 	private
 		def send_butts_list
-			render json: current_user.as_json(include: {butts: {methods:[:price, :created_at, :updated_at]}}, methods: [:butts_this_month, :butts_this_year, :butts_today]) 
+			render json: current_user.as_json(include: {butts: {methods:[:price, :created_at, :updated_at]}}, methods: [:butts_this_month, :butts_this_year, :butts_today, :butts_this_week]) 
 		end
 
 		def butt_params
