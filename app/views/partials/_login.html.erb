@@ -1,0 +1,51 @@
+<% if user_signed_in? %>
+
+	<div class="logout">
+
+	<% if @user["fbid"] %>
+		<a id="fbLogout">Log out of Facebook</a>
+
+	<% else %>
+		<%= link_to "Sign out", '/logout' %>
+
+	<% end %>
+	</div>
+
+<% else %>
+
+	<a id ="fbLogin">Log in with Facebook</a>
+
+	<div class="or">
+		OR
+	</div>
+
+	<div class="register">
+		<%= link_to "Sign up", nil,  id: "sign-up" %>
+		<div class=" sign-up-form show-form">
+			<%= form_tag '/users', method: :post do %>
+				<%= email_field_tag "email", nil, placeholder: "Email" %>
+				<%= password_field_tag "password", "" %>
+				<%= submit_tag "Submit" %>
+				<div class="show-password-sign-up show toggle">
+					<input type="checkbox" id="show-password">
+					show password
+				</div>
+			<% end %>
+		</div>
+	</div>
+
+	<div class="login">
+		<%= link_to "Log In", nil, id:"log-in" %>
+		<div class="log-in-form show-form">
+			<%= form_tag '/login', method: :post do %>
+				<%= email_field_tag "email", nil, placeholder: "Email" %>
+				<%= password_field_tag "password", "" %>
+				<%= submit_tag "Submit" %>
+				<div class="show-password-log-in show toggle">
+					<%= check_box_tag "show-password" %>
+					show password
+				</div>
+			<% end %>
+		</div>
+	</div>
+<% end %>

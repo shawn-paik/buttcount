@@ -33,7 +33,7 @@ class ButtTime extends React.Component {
 						): (
 							<p> Butts this {this.props.buttTime}: </p>
 						)}
-					<div className="butt-digits">
+					<div className="butt-digits odometer">
 						{this.buttDigits(this.props.butts.length)}
 					</div>
 					<br></br>

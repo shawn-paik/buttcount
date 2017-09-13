@@ -1,0 +1,6 @@
+<div class="login-partial">
+	<%=render :partial => "/partials/login" %>
+</div>
+<div class="app-component">
+	<%= react_component 'App', current_user: @current_user %>
+</div>

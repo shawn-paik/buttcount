@@ -30,6 +30,17 @@
  	font-size: 3em;
  }
 
+
+ .show-password-sign-up, .show-password-log-in{
+ 	font-size:.8em;
+ 	white-space: nowrap;
+ }
+
+ input[type=submit] {
+    display: inline-block;
+   	/*margin-left:42%;*/
+	}
+
 @media screen and (max-device-width: 800px) {
 #FBlogout { 
 	font-size: 1.6em;

@@ -99,7 +99,6 @@ $(document).ready(function(){
       console.log(true)
       // $('#log-in').hide()
       $('this').append($('.log-in-form'))
-      debugger
       // $('.log-in-form').prepend($(this))
       $('.log-in-form').show()
       $('.log-in-form').removeClass('show-form')
