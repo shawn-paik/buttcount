@@ -73,27 +73,14 @@ class ButtTime extends React.Component {
 		c.stroke();
 
 		//lines in between numbers in counter
-		[1,2,3,4,5].forEach(function(i) {
-			console.log(i)
-  		// c.beginPath();
-		// c.moveTo(425 + (350/4), 350 )
-		// c.lineTo(425 +(350/4), 450)
-		// c.stroke()
+		[1,2,3,4].forEach(function(i) {
+			var lineX = counterRectX + (counterRectWidth * (i/5) )
+			c.beginPath();
+			c.moveTo(lineX,counterRectY)
+			c.lineTo(lineX,counterRectY + counterRectHeight)
+			c.stroke()
+	
 		});
-		// c.beginPath();
-		// c.moveTo(425 + (350/4), 350 )
-		// c.lineTo(425 +(350/4), 450)
-		// c.stroke()
-
-		// c.beginPath();
-		// c.moveTo(425 + (350/2), 350)
-		// c.lineTo(425 + (350/2), 450)
-		// c.stroke()
-
-		// c.beginPath();
-		// c.moveTo(425 + (350 * .75), 350)
-		// c.lineTo(425 + (350 * .75), 450)
-		// c.stroke()
 	}
 
 	canvas(){
