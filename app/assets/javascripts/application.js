@@ -19,5 +19,5 @@
 //= require components
 //= require_tree .
 
-console.log('hi')
+
 

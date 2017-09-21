@@ -22,13 +22,12 @@
   function login() {
             FB.login(function(response) {
             // handle the response
-            // console.log("Response goes here!");
             console.log(response)
             
             FB.api('/me', function(fbUser) {
                   // debugger
                   addUser(fbUser)
-                      console.log("Open the pod bay doors, " + fbUser.name + ".");
+                      console.log("Welcome, " + fbUser.name + ".");
 
                   });
             });        
@@ -39,7 +38,6 @@
   function addUser(user) {
     var facebookEmail = user.name + '@facebook.com'
     var email = facebookEmail.replace(/ /g,"_");
-    console.log(email)
     var data = {
       fb: true,
       email: email,
@@ -80,13 +78,12 @@ $(document).ready(function(){
   $('#sign-up').on("click", function(event){
      event.preventDefault()
     if($('.sign-up-form').hasClass('show-form')){
-      console.log(true)
-      // $('.sign-up-form').prepend($(this))
+      // console.log(true)
       $('this').append($('.sign-up-form'))
       $('.sign-up-form').show()
       $('.sign-up-form').removeClass('show-form')
     } else{
-      console.log(false)
+      // console.log(false)
       $('.sign-up-form').addClass('show-form')
       $('.sign-up-form').hide()
       $('#sign-up').show()
@@ -97,14 +94,11 @@ $(document).ready(function(){
     event.preventDefault()
     if ($('.log-in-form').hasClass('show-form')){
       console.log(true)
-      // $('#log-in').hide()
       $('this').append($('.log-in-form'))
-      // $('.log-in-form').prepend($(this))
       $('.log-in-form').show()
       $('.log-in-form').removeClass('show-form')
     } else{
       console.log(false)
-      // debugger
       $('.log-in-form').addClass('show-form')
       $('.log-in-form').hide()
       $('#log-in').show()
@@ -118,9 +112,7 @@ $(document).ready(function(){
       $(this).removeClass('show')
     } else {
       console.log('false')
-      // $('#password').attr('type','password')
       $(this).parent()[0][3].type = "password"
-      // $(this).parent()[0][3].attr('type','password')
       $(this).addClass('show')
     }
   })
