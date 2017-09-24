@@ -32,55 +32,105 @@ class ButtTime extends React.Component {
 
 	drawCounter(c, x, y, width, height) {
 		100, 100, 400, 400
+
+		// border for outer rectangle
+		c.beginPath();
+		c.lineWidth = 15;
+		c.moveTo(x,y);
+		c.lineTo(x+width, y);
+		c.lineTo(x+width, y + height);
+		c.lineTo(x, y+height);
+		c.lineTo(x,y)
+		c.stroke()
+
+
 		//outer rectangle
 		c.fillStyle="grey";
 		c.fillRect(x, y, width, height);
 
+		
+
 		//inner rectangle
+	
+		var innerRectangle = {
+			x: x,
+			y: y + (width/4),
+			width: width,
+			height: y + (width/4)
+		}
 		c.fillStyle="red";
-		var innerRectangleHeight = height / 2;
-		var innerY = y + (width/4);
-		c.fillRect(x, innerY, width, innerRectangleHeight);
+		c.fillRect(innerRectangle.x, innerRectangle.y, innerRectangle.width, innerRectangle.height);
 
-		//inner inner rectangle
-		c.fillStyle="white";
-		var counterRectX = x + (x / 4);
-		var counterRectY = innerY + (innerY / 4);
-		var counterRectWidth = width - (width / 8);
-		var counterRectHeight = innerRectangleHeight / 2;
-		c.fillRect(counterRectX, counterRectY, counterRectWidth, counterRectHeight);
+		//border for inner rectangle
 
-
-		//corner lines
 		c.beginPath();
-		c.moveTo(x,innerY);
-		c.lineTo(counterRectX,counterRectY);
+		c.lineWidth = 15;
+		c.moveTo(innerRectangle.x, innerRectangle.y);
+		c.lineTo(innerRectangle.x + width, innerRectangle.y);
+		c.lineTo(innerRectangle.x + width, innerRectangle.y + innerRectangle.height);
+		c.lineTo(innerRectangle.x, innerRectangle.y + innerRectangle.height);
+		c.lineTo(innerRectangle.x,innerRectangle.y);
+		c.stroke();
+
+
+		//inside rectangle
+		var insideRectangle={
+			x: x +(x/4),
+			y: innerRectangle.y + (innerRectangle.y/4),
+			width: width - (width / 8),
+			height: innerRectangle.height / 2
+		}
+
+		c.fillStyle="white";
+		c.fillRect(insideRectangle.x, insideRectangle.y, insideRectangle.width, insideRectangle.height);
+
+		//border for inside rectangle
+		c.beginPath();
+		c.lineWidth = 15;
+		c.moveTo(insideRectangle.x, insideRectangle.y);
+		c.lineTo(insideRectangle.x + insideRectangle.width, insideRectangle.y);
+		c.lineTo(insideRectangle.x + insideRectangle.width, insideRectangle.y + insideRectangle.height);
+		c.lineTo(insideRectangle.x, insideRectangle.y + insideRectangle.height);
+		c.lineTo(insideRectangle.x, insideRectangle.y);
+		c.stroke();
+
+		// //corner lines
+		c.beginPath();
+		c.lineWidth = 15;
+		c.moveTo(x,innerRectangle.y);
+		c.lineTo(insideRectangle.x,insideRectangle.y);
 		c.stroke();
 
 		c.beginPath();
-		c.moveTo(x + width,innerY);
-		c.lineTo(counterRectX + counterRectWidth,counterRectY);
+		c.moveTo(x + width,innerRectangle.y);
+		c.lineTo(insideRectangle.x + insideRectangle.width,insideRectangle.y);
 		c.stroke();
 		
 		c.beginPath();
-		c.moveTo(x,innerY + innerRectangleHeight);
-		c.lineTo(counterRectX,counterRectY + counterRectHeight);
+		c.moveTo(x,innerRectangle.y + innerRectangle.height);
+		c.lineTo(insideRectangle.x,insideRectangle.y + insideRectangle.height);
 		c.stroke();
 
 		c.beginPath();
-		c.moveTo(x + width, innerY + innerRectangleHeight);
-		c.lineTo(counterRectX + counterRectWidth,counterRectY + counterRectHeight);
+		c.moveTo(x + width, innerRectangle.y + innerRectangle.height);
+		c.lineTo(insideRectangle.x + insideRectangle.width, insideRectangle.y + insideRectangle.height);
 		c.stroke();
 
 		//lines in between numbers in counter
+		c.lineWidth = 5;
 		[1,2,3,4].forEach(function(i) {
-			var lineX = counterRectX + (counterRectWidth * (i/5) )
+			var lineX = insideRectangle.x + (insideRectangle.width * (i/5) )
 			c.beginPath();
-			c.moveTo(lineX,counterRectY)
-			c.lineTo(lineX,counterRectY + counterRectHeight)
+			c.moveTo(lineX,insideRectangle.y)
+			c.lineTo(lineX,insideRectangle.y + insideRectangle.height)
 			c.stroke()
-	
 		});
+
+		//text
+		c.font = "48px serif"
+		c.textBaseline="hanging"
+		c.fillStyle = "black"
+		c.fillText('1', insideRectangle.x + 25, insideRectangle.y + 30)
 	}
 
 	canvas(){
