@@ -54,7 +54,7 @@ class ButtTime extends React.Component {
 
 
 		//outer rectangle
-		c.fillStyle="grey";
+		c.fillStyle="black";
 		c.fillRect(x, y, width, height);
 
 		
@@ -67,7 +67,7 @@ class ButtTime extends React.Component {
 			width: width,
 			height: y + (width/4)
 		}
-		c.fillStyle="red";
+		c.fillStyle="grey";
 		c.fillRect(innerRectangle.x, innerRectangle.y, innerRectangle.width, innerRectangle.height);
 
 		//border for inner rectangle
@@ -195,7 +195,6 @@ class ButtTime extends React.Component {
 						): (
 							<p> Butts this {this.props.buttTime}: </p>
 						)}
-
 					<canvas id= {this.props.buttTime + "canvas"}></canvas>
 					{this.canvas()}
 					<br></br>
