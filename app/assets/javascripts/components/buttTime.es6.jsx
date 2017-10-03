@@ -1,6 +1,9 @@
 class ButtTime extends React.Component {
 	constructor(props){
 		super(props);
+		this.state={
+			text:[]
+		}
 		this.buttDigits = this.buttDigits.bind(this);
 		this.canvas = this.canvas.bind(this);
 		this.yo=this.yo.bind(this);
@@ -9,20 +12,27 @@ class ButtTime extends React.Component {
 	}
 
 	componentDidMount(){
+		
+		var text = this.buttDigits(this.props.butts.length);
+		this.setState({
+			text: text
+		})
 	}
 
 	buttDigits(butts){
 		var buttElements = [];
 		var buttString = butts + "";
 		buttArray = buttString.split("");
-		for (var i=0; i < buttArray.length; i++) {
-			buttElements.push(<button className="buttButton">{buttArray[i]}</button>);
-		}
-		return buttElements;
+
+		if(buttArray.length < 5 ) {
+      var difference = 5 - buttArray.length;
+      for (i=0;i<difference;i++) {
+      buttArray.unshift('0');
+      }
+    } 
+    return buttArray
 	}
-	// componentDidMount(){
-	// 	debugger
-	// }
+	
 	yo (){
 		this.sup();
 	}
@@ -31,7 +41,6 @@ class ButtTime extends React.Component {
 	}
 
 	drawCounter(c, x, y, width, height) {
-		100, 100, 400, 400
 
 		// border for outer rectangle
 		c.beginPath();
@@ -116,33 +125,57 @@ class ButtTime extends React.Component {
 		c.lineTo(insideRectangle.x + insideRectangle.width, insideRectangle.y + insideRectangle.height);
 		c.stroke();
 
+		100, 100, 400, 400
+
 		//lines in between numbers in counter
 		c.lineWidth = 5;
-		[1,2,3,4].forEach(function(i) {
-			var lineX = insideRectangle.x + (insideRectangle.width * (i/5) )
+		for(i = 0; i < 4; i++) {
+			var lineX = insideRectangle.x + (insideRectangle.width * ((i + 1)/5) )
 			c.beginPath();
 			c.moveTo(lineX,insideRectangle.y)
 			c.lineTo(lineX,insideRectangle.y + insideRectangle.height)
 			c.stroke()
-		});
+		}
 
-		//text
-		c.font = "48px serif"
+		// numbers
+		var numbers = {
+			text: this.buttDigits(this.props.butts.length),
+			x: insideRectangle.x + insideRectangle.x / 5,
+			y: insideRectangle.y + (y/3),
+			space: insideRectangle.width / 5
+		}
+
+		c.font = "50px serif"
 		c.textBaseline="hanging"
-		c.fillStyle = "black"
-		c.fillText('1', insideRectangle.x + 25, insideRectangle.y + 30)
+		c.fillStyle = "black";
+
+		for(i=0; i<5; i++){
+			console.log(numbers.text)
+			if(numbers.text) {
+			c.fillText(numbers.text[i],numbers.x + (i * numbers.space), numbers.y)
+			}
+		}
 	}
 
 	canvas(){
 
+		// var canvas= document.createElement('canvas'); 
+		// canvas.id = this.props.buttTime + "canvas"
 
-		var canvas = document.querySelector('canvas');
-		canvas.width = 600;
+		var canvas = document.querySelector('#' + this.props.buttTime+"canvas");
+	
+		if (canvas){
+			canvas.width = 600;
 		canvas.height = 600;
+		// canvas.border=black
 		var c = canvas.getContext('2d');
 		var width = 400;
 		var height = 400;
+		canvas.style.left = "-1000px";
+        // canvas.style.position = "absolute";
 		this.drawCounter(c, 100, 100, width, height);
+		 }
+	
 
 			// $(window).resize(function(){
 			// 	var canvas = document.querySelector('canvas')
@@ -150,33 +183,26 @@ class ButtTime extends React.Component {
 			// 	canvas.height = 600
 			// 	var c = canvas.getContext('2d');
 			// })
+
 	}
 
 	render(){
 		return(
 		<div className="buttTime-container">
-			<div className= "row">
-				<div className="col-sm-4">
-				</div>
-				<div className={'col-sm-4 ' + this.props.buttTime + "-container"}>
-					{this.canvas()}
+				<div className={ this.props.buttTime + "-container"}>
 					{this.props.buttTime === 'total' || this.props.buttTime==='today' ? (
 							<p> Butts  {this.props.buttTime}: </p>
 						): (
 							<p> Butts this {this.props.buttTime}: </p>
 						)}
-					<div className="butt-digits odometer">
-						{this.yo()}
-						{this.buttDigits(this.props.butts.length)}
-						}
-					</div>
+
+					<canvas id= {this.props.buttTime + "canvas"}></canvas>
+					{this.canvas()}
 					<br></br>
 					<input type="button" name="decrease" value="-" onClick={this.props.minus}/>
 					<input type="button" name="increase" value="+" onClick={this.props.add}/>
 				</div>
-				<div className = "col-sm-4">
-				</div>
-			</div>
+
 		</div>
 		)
 	}
