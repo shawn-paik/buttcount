@@ -27,7 +27,7 @@ class App extends React.Component {
 
 	addButts(event){
 		this.state.buttcount += 1
-		// event.preventDefault()
+		event.preventDefault()
 		$.ajax({
 			method:'POST',
 			url: '/butts'
@@ -47,7 +47,7 @@ class App extends React.Component {
 
 	minusButts(event){
 		this.state.buttcount -= 1
-		// event.preventDefault()
+		event.preventDefault()
 		var lastButt=this.state.butts.slice(-1)[0].id
 		$.ajax({
 			method:'DELETE',
